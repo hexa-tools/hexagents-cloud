@@ -313,7 +313,7 @@ optional = false
 python-versions = ">=3.12"
 groups = ["main"]
 files = []
-develop = true
+develop = false
 
 [package.dependencies]
 fastapi = ">=0.115"
@@ -324,8 +324,11 @@ uvicorn = {version = ">=0.32", extras = ["standard"]}
 dev = ["mypy (>=1.13)", "pytest (>=8.3)", "pytest-cov (>=5.0)", "pyyaml (>=6.0)", "ruff (>=0.8)"]
 
 [package.source]
-type = "directory"
-url = "../hexagents/src/backend"
+type = "git"
+url = "https://github.com/hexa-tools/hexagents.git"
+reference = "main"
+resolved_reference = "6e4822979ae36649203443f5f0d8133150aca353"
+subdirectory = "src/backend"
 
 [[package]]
 name = "httptools"
@@ -1453,4 +1456,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "0929971678b9dc0705ebf52f4810edda14c6a236bbe316400bad3cfd4954a5a5"
+content-hash = "2f829428d47f85ab3b48dd5a3f3e7fd8304dad8602361bf8f689743c17229b04"

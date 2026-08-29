@@ -1,9 +1,19 @@
 AGENTS.md
 hexa_guard.py
 
-# The public harness (checked out by CI as a sibling, symlinked locally)
-hexagents/
+# The public harness (checked out by CI as a worktree dir, symlinked locally)
+hexagents
 
 # MemPalace per-project files (issue #185)
 mempalace.yaml
 entities.json
+
+# Python caches / artifacts
+__pycache__/
+*.pyc
+.venv/
+.coverage
+coverage.xml
+htmlcov/
+.eggs/
+dist/

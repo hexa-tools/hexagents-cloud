@@ -13,12 +13,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-# The private package consumes the public harness (unidirectional).
-# `poetry.lock` references `hexagents` as a local path dep (hexagents/src/backend)
-# resolved relative to the pyproject, so the public repo must be present in the
-# workspace as `hexagents/`. The repo is public, so we clone it over https
-# (avoiding the actions/checkout multi-repo ENOENT path issue). Locally a symlink
-# `hexagents -> ../hexagents` keeps the same resolution.
+# The private package consumes the public harness (unidirectional) via a git
+# dependency (`hexagents` from hexa-tools/hexagents, subdirectory src/backend).
+# No additional checkout is required — `poetry install` resolves it from git.
 jobs:
   quality:
     name: Lint + typecheck (ruff + mypy)
@@ -28,8 +25,6 @@ jobs:
         working-directory: .
     steps:
       - uses: actions/checkout@v5
-      - name: Checkout public harness
-        run: git clone --depth 1 https://github.com/hexa-tools/hexagents.git hexagents
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -39,7 +34,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pypoetry
-          key: poetry-${{ runner.os }}-${{ hashFiles('poetry.lock') }}-${{ hashFiles('hexagents/poetry.lock') }}
+          key: poetry-${{ runner.os }}-${{ hashFiles('poetry.lock') }}
       - name: Install dependencies
         run: poetry install
       - name: Ruff lint
@@ -55,8 +50,6 @@ jobs:
         working-directory: .
     steps:
       - uses: actions/checkout@v5
-      - name: Checkout public harness
-        run: git clone --depth 1 https://github.com/hexa-tools/hexagents.git hexagents
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -66,7 +59,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pypoetry
-          key: poetry-${{ runner.os }}-${{ hashFiles('poetry.lock') }}-${{ hashFiles('hexagents/poetry.lock') }}
+          key: poetry-${{ runner.os }}-${{ hashFiles('poetry.lock') }}
       - name: Install dependencies
         run: poetry install
       - name: Run unit tests
@@ -80,8 +73,6 @@ jobs:
         working-directory: .
     steps:
       - uses: actions/checkout@v5
-      - name: Checkout public harness
-        run: git clone --depth 1 https://github.com/hexa-tools/hexagents.git hexagents
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -91,15 +82,11 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pypoetry
-          key: poetry-${{ runner.os }}-${{ hashFiles('poetry.lock') }}-${{ hashFiles('hexagents/poetry.lock') }}
+          key: poetry-${{ runner.os }}-${{ hashFiles('poetry.lock') }}
       - name: Install dependencies
         run: poetry install
       - name: Coverage report
-        run: poetry run pytest tests \
-          --cov=hexagents_cloud \
-          --cov-report=xml \
-          --cov-report=term-missing \
-          --cov-fail-under=95
+        run: poetry run pytest tests --cov=hexagents_cloud --cov-report=xml --cov-report=term-missing --cov-fail-under=95
         env:
           COVERAGE_FAIL_UNDER: 95
       - name: Upload coverage artifact
