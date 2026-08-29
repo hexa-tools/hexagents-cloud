@@ -1,0 +1,67 @@
+[tool.poetry]
+name = "hexagents-cloud"
+version = "0.1.0"
+description = "HexAgents Cloud — private action layer (hexagonal + DDD) on top of the hexagents harness"
+readme = "README.md"
+license = "FSL-1.1-Apache-2.0"
+packages = [{ include = "hexagents_cloud", from = "." }]
+
+[tool.poetry.dependencies]
+python = ">=3.12"
+hexagents = { path = "hexagents/src/backend", develop = true }
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.3"
+pytest-cov = ">=5.0"
+ruff = ">=0.8"
+mypy = ">=1.13"
+
+[build-system]
+requires = ["poetry-core>=1.9"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts = "-q --strict-markers"
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = [
+    "integration: requires sandbox environment (k3d, Stripe test mode), SANDBOX_MODE=true",
+    "e2e: requires real environment, CI release only",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["hexagents_cloud"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B", "SIM", "N"]
+ignore = ["B008"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["hexagents_cloud", "hexagents"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = []
+
+[[tool.mypy.overrides]]
+module = ["cloud_guard"]
+ignore_missing_imports = true
+
+[tool.coverage.run]
+branch = true
+source = ["hexagents_cloud"]
+omit = ["hexagents_cloud/tests/*", "tests/*"]
+
+[tool.coverage.report]
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "def __repr__",
+    "@(overload)",
+]
