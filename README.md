@@ -1,4 +1,5 @@
 [![Tests](https://img.shields.io/badge/tests-17_passed-brightgreen.svg)]()
+[![codecov](https://codecov.io/gh/hexa-tools/hexagents-cloud/graph/badge.svg?token=2CAS9703L9)](https://codecov.io/gh/hexa-tools/hexagents-cloud)
 
 # hexagents-cloud
 

@@ -36,7 +36,7 @@ src = ["hexagents_cloud"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "W", "UP", "B", "SIM", "N"]
-ignore = ["B008"]
+ignore = ["B008", "N818"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["hexagents_cloud", "hexagents"]
@@ -52,6 +52,10 @@ plugins = []
 
 [[tool.mypy.overrides]]
 module = ["cloud_guard"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["hexagents", "hexagents.*"]
 ignore_missing_imports = true
 
 [tool.coverage.run]
