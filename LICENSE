@@ -1,0 +1,71 @@
+# Functional Source License, Version 1.1, Apache 2.0 Future License
+
+## Abbreviation
+
+FSL-1.1-Apache-2.0
+
+## Notice
+
+Copyright 2026 hexagents
+
+## Terms of the Functional Source License
+
+### 1. Grant
+
+a. The Licensor grants the recipient a non-exclusive, worldwide,
+non-transferable, sublicensable, revocable, royalty-free, limited
+license to use, copy, modify, and distribute the Software, subject to
+the following conditions.
+
+b. The recipient may make and distribute copies of the Software, and may
+create and distribute derivative works of the Software, provided that
+the Software and any derivative work communicates, in a clear and
+conspicuous way, the modified source files and how they differ from the
+original Software.
+
+### 2. Limitation
+
+a. The recipient does not receive the right to use the Software in any
+manner in connection with producing or providing the same as or similar to
+the Software, or any derivative work, as a commercial product or service.
+
+b. This license does not grant the recipient the right to sublicense the
+Software in a way that allows the recipient to use, copy, modify, and
+distribute the Software in a manner that would otherwise be prohibited by
+this license if the recipient were the Licensor.
+
+### 3. Change of License
+
+On the date specified in the "Change Date" (if any) or the "Change License"
+(if any) the Software is licensed under the License, and no longer under
+this License.
+
+### 4. Termination
+
+The license terminates if the recipient does not comply with the terms of
+this License.
+
+### 5. No Warranty
+
+The Software is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied.
+
+### 6. Limitation of Liability
+
+In no event and under no legal theory shall the Licensor be liable to the
+recipient for any damages arising as a result of this License or the use
+of the Software.
+
+### 7. Apache 2.0
+
+The recipient agrees that the Software is licensed under the Apache License,
+Version 2.0, or a compatible license, on the Change Date (if any) or the
+Change License (if any), and in accordance with the terms of this License.
+
+## Change Date
+
+Four years from the date of the first commit of the original release.
+
+## Change License
+
+Apache-2.0
